@@ -5,7 +5,6 @@ const Layout = ({ id, title, desc, urlBg, colorBg }) => {
         backgroundImage: urlBg && `url(${urlBg})`,
         backgroundColor: colorBg && colorBg
     }
-    console.log(layoutStyle);
     return (
         <section className={s.root} id={id} style={layoutStyle}>
             <div className={s.wrapper}>
