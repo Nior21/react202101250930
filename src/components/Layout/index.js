@@ -1,6 +1,6 @@
 import s from './style.module.css';
 
-const Layout = ({ id, title, desc, urlBg, colorBg, ...props }) => {
+const Layout = ({ id, title, urlBg, colorBg, children }) => {
     const layoutStyle = {
         backgroundImage: urlBg && `url(${urlBg})`,
         backgroundColor: colorBg && colorBg
@@ -14,7 +14,7 @@ const Layout = ({ id, title, desc, urlBg, colorBg, ...props }) => {
                         <span className={s.separator}></span>
                     </div>
                     <div className={`${s.desc} ${s.full}`}>
-                        <p>{ desc && <p>{desc}</p> }</p>
+                        {children}
                     </div>
                 </article>
             </div>
