@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./components/Header";
+import Layout from "./components/Layout";
+import Footer from "./components/Footer";
 
-function App() {
+import firstImg from './accert/bg1.jpg';
+import secondImg from './accert/bg3.jpg';
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+      <>
+        <Header
+            title="This is a new Title"
+            desc="This is Description!"
+        />
+        <Layout urlBg={firstImg} title="This is the first Layout" desc="This is Description" />
+        <Layout colorBg="gray" title="This is the second Layout" desc="This is Description" />
+        <Layout urlBg={secondImg} title="This is the third Layout" desc="This is Description" />
+        <Footer />
+      </>);
 }
 
 export default App;
