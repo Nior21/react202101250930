@@ -1,10 +1,10 @@
 import Header from "./components/Header";
 import Layout from "./components/Layout";
 import Footer from "./components/Footer";
-
 import firstImg from './assets/bg1.jpg';
 import secondImg from './assets/bg3.jpg';
 import PokemonCard from "./components/PokemonCard";
+import s from "./App.css";
 
 const POKEMONS = [
     {
@@ -149,8 +149,8 @@ const App = () => {
             desc="This is Description!"
         />
         <Layout id="rules"
+                title="Rules"
                 urlBg={firstImg}
-                title="This is the first Layout"
         >
             <p>
                 In the game two players face off against one another, one side playing as "blue", the other as "red" on a 3x3 grid.
@@ -161,8 +161,9 @@ const App = () => {
             </p>
         </Layout>
         <Layout id="card"
-                colorBg="gray"
-                title="This is the second Layout"
+                title="Card"
+                colorTitle="#FEFEFE"
+                colorBg="#202736"
         >
           <div className="flex">
               {
@@ -171,8 +172,8 @@ const App = () => {
           </div>
         </Layout>
         <Layout id="about"
+                title="Full Rules"
                 urlBg={secondImg}
-                title="This is the third Layout"
         >
           <p>
               In the game two players face off against one another, one side playing as "blue", the other as "red" on a 3x3 grid.
