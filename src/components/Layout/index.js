@@ -14,7 +14,7 @@ const Layout = ({ id, title, urlBg, colorBg, colorTitle, children }) => {
                 <article>
                     <div className={s.title} style={titleStyle}>
                         <h3>{title}</h3>
-                        <span className={s.separator}></span>
+                        <span className={s.separator} />
                     </div>
                     <div className={`${s.desc} ${s.full}`}>
                         {children}
