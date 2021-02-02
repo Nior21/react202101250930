@@ -15,7 +15,7 @@ const PokemonCard = ({id, name, img, type, values}) => {
         <div className={s.root} onClick={handleClick}>
             <div className={cn(s.pokemonCard, {[s.active]: isActive})}>
                 <div className={s.cardFront}>
-                    <div className={cn(s.wrap, s.wrap)}>
+                    <div className={cn(s.wrap, s.front)}>
                         <div className={`${s.pokemon} ${s[type]}`}>
                             <div className={s.values}>
                                 <div className={cn(s.count, s.top)}>{values.top}</div>
