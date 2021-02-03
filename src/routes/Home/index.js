@@ -12,12 +12,9 @@ const HomePage = ({ onChangePage }) => {
         console.log(`####: <HomePage /> ${page}`);
         onChangePage && onChangePage(page);
     };
-    const handleClickNavButton = ( isActive ) => {
-        console.log(`####: <HomePage /> ${isActive}`);
-    };
     return (
         <>
-            <MenuHeader onClickNavButton={handleClickNavButton}/>
+            <MenuHeader />
             <Header
                 title="Pokemon Games"
                 desc="This is a simple triple triad card game"

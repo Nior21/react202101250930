@@ -2,7 +2,6 @@ import s from './style.module.css';
 
 const Header = ({ title, desc, onChangePage }) => {
     const handleClick = () => {
-        console.log(`####: <Header /> game`)
         onChangePage && onChangePage('game');
     }
     return (

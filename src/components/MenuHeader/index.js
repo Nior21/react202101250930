@@ -1,19 +1,18 @@
 import { useState } from 'react';
 import Menu from "../Menu";
 import NavBar from "../NavBar";
-import HomePage from "../../routes/Home";
 
-const MenuHeader = ({ onClickNavButton }) => {
-    const [isActive, setNavBar] = useState(true);
-    const handleClickNavButton = () => {
-        onClickNavButton && onClickNavButton();
-        console.log(`####: <MenuHeader />`);
+const MenuHeader = () => {
+    const [menuState, setMenuState] = useState(true);
+    const handleClickHamburger = (menuState) => {
+        setMenuState(!menuState);
     };
     return (
         <>
-            <Menu />
+            <Menu menuState={menuState} />
             <NavBar
-                onClick={handleClickNavButton}
+                menuState={menuState}
+                onChangeMenuState={handleClickHamburger}
             />
         </>
     )

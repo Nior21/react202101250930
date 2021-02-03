@@ -5,7 +5,6 @@ import GamePage from "./routes/Game";
 const App = () => {
     const [page, setPage] = useState('app')
     const handleChangePage = (page) => {
-        console.log(`####: <App /> ${page}`);
         setPage(page);
     };
     switch (page) {
