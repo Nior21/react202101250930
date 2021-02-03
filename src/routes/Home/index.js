@@ -8,16 +8,20 @@ import pokemons from "../../pokemons.json";
 import MenuHeader from "../../components/MenuHeader";
 
 const HomePage = ({ onChangePage }) => {
-    const handleClickButton = (page) => {
+    const handleClick = (page) => {
+        console.log(`####: <HomePage /> ${page}`);
         onChangePage && onChangePage(page);
+    };
+    const handleClickNavButton = ( isActive ) => {
+        console.log(`####: <HomePage /> ${isActive}`);
     };
     return (
         <>
-            <MenuHeader />
+            <MenuHeader onClickNavButton={handleClickNavButton}/>
             <Header
                 title="Pokemon Games"
                 desc="This is a simple triple triad card game"
-                onClickButton={handleClickButton}
+                onChangePage={handleClick}
             />
             <Layout id="rules"
                     title="Rules"

@@ -1,8 +1,9 @@
 import s from './style.module.css';
 
-const Header = ({ title, desc, onClickButton }) => {
+const Header = ({ title, desc, onChangePage }) => {
     const handleClick = () => {
-        onClickButton && onClickButton('game');
+        console.log(`####: <Header /> game`)
+        onChangePage && onChangePage('game');
     }
     return (
         <div className={s.root}>
@@ -10,7 +11,7 @@ const Header = ({ title, desc, onClickButton }) => {
             <div className={s.container}>
                 { title && <h1>{title}</h1> }
                 { desc && <p>{desc}</p> }
-                <button onClick={handleClick} className={s.button}>
+                <button className={s.button} onClick={handleClick}>
                     Start Game
                 </button>
             </div>
