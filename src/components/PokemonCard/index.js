@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import cn from "classnames";
-import s from "./style.module.css";
+
 import cardBackSide from "./assets/card-back-side.jpg";
+import s from "./style.module.css";
 
 const PokemonCard = ({id, name, img, type, values}) => {
     const [isActive, setActive] = useState(false);
@@ -35,7 +36,7 @@ const PokemonCard = ({id, name, img, type, values}) => {
                 </div>
                 <div className={s.cardBack}>
                     <div className={cn(s.wrap, s.back)}>
-                        <img src={cardBackSide} alt="Сard Backed" />
+                        <img src={cardBackSide} alt="Card Backed" />
                     </div>
                 </div>
             </div>

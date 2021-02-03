@@ -4,17 +4,34 @@ import Footer from "../../components/Footer";
 import firstImg from '../../assets/bg1.jpg';
 import secondImg from '../../assets/bg3.jpg';
 import PokemonCard from "../../components/PokemonCard";
-import pokemons from "../../pokemons.json";
+import pokemons from "../../components/PokemonCard/pokemons.json";
 import MenuHeader from "../../components/MenuHeader";
 
 const HomePage = ({ onChangePage }) => {
     const handleClick = (page) => {
-        console.log(`####: <HomePage /> ${page}`);
         onChangePage && onChangePage(page);
     };
+    const menuItems = [
+        {
+            "name": "HOME",
+            "route": "#welcome"
+        },
+        {
+            "name": "GAME",
+            "route": "#game"
+        },
+        {
+            "name": "ABOUT",
+            "route": "#about"
+        },
+        {
+            "name": "CONTACT",
+            "route": "#contact"
+        }
+    ];
     return (
         <>
-            <MenuHeader />
+            <MenuHeader menuItems={menuItems}/>
             <Header
                 title="Pokemon Games"
                 desc="This is a simple triple triad card game"

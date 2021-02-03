@@ -11,7 +11,7 @@ const NavBar = ({menuState, onChangeMenuState}) => {
                 <p className={s.brand}>
                     LOGO
                 </p>
-                <a href="#" className={cn(s.menuButton, {[s.active]: menuState })}>
+                <a href="#!" className={cn(s.menuButton, {[s.active]: menuState})}>
                     <span />
                 </a>
             </div>

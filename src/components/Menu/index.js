@@ -1,32 +1,19 @@
 import cn from 'classnames';
 import s from './style.module.css';
 
-const Menu = ({menuState}) => {
+const Menu = ({menuState, menuItems}) => {
     return (
         <div className={cn(s.menuContainer, {[s.active]: menuState})}>
             <div className={s.overlay} />
             <div>
                 <ul>
-                    <li>
-                        <a href="#welcome">
-                            HOME
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#game">
-                            GAME
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#about">
-                            ABOUT
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#contact">
-                            CONTACT
-                        </a>
-                    </li>
+                    {menuItems.map(item =>
+                        <li>
+                            <a href={item.route}>
+                                {item.name}
+                            </a>
+                        </li>
+                    )}
                 </ul>
             </div>
         </div>

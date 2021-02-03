@@ -2,7 +2,6 @@ import s from "./style.module.css";
 
 const GamePage = ({ onChangePage }) => {
     const handleClick = (page) => {
-        console.log(`####: <GamePage /> app`);
         onChangePage && onChangePage('app');
     };
 
