@@ -4,13 +4,11 @@ import Footer from "../../components/Footer";
 import firstImg from '../../assets/bg1.jpg';
 import secondImg from '../../assets/bg3.jpg';
 import PokemonCard from "../../components/PokemonCard";
-import "../../App.css";
 import pokemons from "../../pokemons.json";
 import MenuHeader from "../../components/MenuHeader";
 
 const HomePage = ({ onChangePage }) => {
     const handleClickButton = (page) => {
-        console.log('####: <HomePage />')
         onChangePage && onChangePage(page);
     };
     return (

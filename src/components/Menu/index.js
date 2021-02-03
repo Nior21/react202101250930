@@ -2,16 +2,16 @@ import { useState } from 'react';
 import s from './style.module.css';
 import cn from 'classnames';
 
-const Menu = () => {
+const Menu = ({isActiveMenu}) => {
     const [isActive, setActive] = useState(false);
 
     const handleClick = () => {
         setActive(!isActive);
     }
     return (
-        <div className={cn(s.menuContainer, {[s.active]: isActive})} onClick={handleClick}>
+        <div className={cn(s.menuContainer, isActiveMenu ? s.active : s.deactive)} onClick={handleClick}>
             <div className={s.overlay} />
-            <div className={s.menuItem}>
+            <div>
                 <ul>
                     <li>
                         <a href="#welcome">
