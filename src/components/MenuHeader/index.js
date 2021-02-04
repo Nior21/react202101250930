@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Menu from "../Menu";
-import NavBar from "../NavBar";
+import Menu from "./Menu";
+import NavBar from "./NavBar";
 
 const MenuHeader = ({ bgActive }) => {
     const [menuState, setMenuState] = useState(null);
@@ -11,6 +11,7 @@ const MenuHeader = ({ bgActive }) => {
         <>
             <Menu
                 menuState={menuState}
+                onClickHamburger={handleClickHamburger}
             />
             <NavBar
                 menuState={menuState}

@@ -31,7 +31,7 @@ a:visited {
 
 a:hover,
 a:active {
-    color: #f300b4;
+    color: #FF9800;
 }
 
 .container {
@@ -93,21 +93,4 @@ a:active {
     font-style: italic;
     color: #fafafa;
     line-height: 65px;
-}
-
-/***** Stop Game Button *****/
-.button {
-    width: 100%;
-    padding: 10px;
-    font: normal 28px 'Overlock', Arial, Helvetica, sans-serif;
-    color: #212121;
-    border: 0px;
-    border-radius: 20px;
-    opacity: 0.3;
-    transition: all 0.6s ease;
-    background: #FF9800;
-}
-.button:hover{
-    text-decoration: none;
-    opacity: 1;
 }

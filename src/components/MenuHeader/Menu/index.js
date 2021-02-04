@@ -1,23 +1,28 @@
 import cn from 'classnames';
+import { Link } from 'react-router-dom';
+
 import s from './style.module.css';
 
-const Menu = ({ menuState }) => {
+const Menu = ({ menuState, onClickHamburger }) => {
+    const handleClickMenuItem = () => {
+        onClickHamburger && onClickHamburger(menuState);
+    };
     const menuItems = [
         {
             "name": "HOME",
-            "route": "#welcome"
+            "route": "/home"
         },
         {
             "name": "GAME",
-            "route": "#game"
+            "route": "/game"
         },
         {
             "name": "ABOUT",
-            "route": "#about"
+            "route": "/about"
         },
         {
             "name": "CONTACT",
-            "route": "#contact"
+            "route": "/contact"
         }
     ];
     return (
@@ -30,9 +35,9 @@ const Menu = ({ menuState }) => {
                 <ul>
                     {menuItems.map(({name, route}, index) =>
                         <li key={index}>
-                            <a href={route}>
+                            <Link to={route} onClick={handleClickMenuItem}>
                                 {name}
-                            </a>
+                            </Link>
                         </li>
                     )}
                 </ul>

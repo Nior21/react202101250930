@@ -5,20 +5,15 @@ import firstImg from '../../assets/bg1.jpg';
 import secondImg from '../../assets/bg3.jpg';
 import PokemonCard from "../../components/PokemonCard";
 import pokemons from "../../components/PokemonCard/pokemons.json";
-import MenuHeader from "../../components/MenuHeader";
 
-const HomePage = ({ onChangePage }) => {
-    const handleClick = (page) => {
-        onChangePage && onChangePage(page);
-    };
+
+const HomePage = () => {
 
     return (
         <>
-            <MenuHeader />
             <Header
                 title="Pokemon Games"
                 desc="This is a simple triple triad card game"
-                onChangePage={handleClick}
             />
             <Layout id="rules"
                     title="Rules"
