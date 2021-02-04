@@ -58,11 +58,11 @@
 }
 
 .menuContainer::before {
-    background: url(./src/assets/Stars.svg);
+    background: url(https://raw.githubusercontent.com/yagoestevez/fcc-portfolio/master/src/Images/Stars.svg?sanitize=true);
 }
 
 .menuContainer::after {
-    background: url(./src/assets/Trees.svg) bottom repeat-x;
+    background: url(https://raw.githubusercontent.com/yagoestevez/fcc-portfolio/master/src/Images/Trees.svg?sanitize=true) bottom repeat-x;
 }
 
 .menuContainer.deactive {
@@ -114,7 +114,7 @@
 @keyframes slide-out {
     from {
         opacity: 1;
-        margin-left: 0px;
+        margin-left: 0;
     }
     to {
         opacity: 0;
@@ -157,7 +157,7 @@
 
 .menuContainer ul li a:hover::after {
     content: ' »';
-    color: #E91E63;
+    color: #f300b4;
 }
 
 .menuContainer a,
@@ -167,7 +167,7 @@
 
 .menuContainer a:hover,
 .menuContainer a:active {
-    color: #E91E63;
+    color: #f300b4;
 }
 
 @media only screen and (max-width: 649px) {
