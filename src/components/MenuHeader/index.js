@@ -2,24 +2,23 @@ import { useState } from 'react';
 import Menu from "../Menu";
 import NavBar from "../NavBar";
 
-const MenuHeader = ({menuItems}) => {
-    const [menuState, setMenuState] = useState(false);
-    const handleClickHamburger = (menuState) => {
-        setMenuState(!menuState);
+const MenuHeader = ({ bgActive }) => {
+    const [menuState, setMenuState] = useState(null);
+    const handleClickHamburger = () => {
+        setMenuState(menuState => !menuState);
     };
     return (
         <>
             <Menu
                 menuState={menuState}
-                menuItems={menuItems}
             />
             <NavBar
                 menuState={menuState}
-                onChangeMenuState={handleClickHamburger}
+                bgActive={bgActive}
+                onClickHamburger={handleClickHamburger}
             />
         </>
     )
 };
-
 
 export default MenuHeader;

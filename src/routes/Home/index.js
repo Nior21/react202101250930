@@ -11,27 +11,10 @@ const HomePage = ({ onChangePage }) => {
     const handleClick = (page) => {
         onChangePage && onChangePage(page);
     };
-    const menuItems = [
-        {
-            "name": "HOME",
-            "route": "#welcome"
-        },
-        {
-            "name": "GAME",
-            "route": "#game"
-        },
-        {
-            "name": "ABOUT",
-            "route": "#about"
-        },
-        {
-            "name": "CONTACT",
-            "route": "#contact"
-        }
-    ];
+
     return (
         <>
-            <MenuHeader menuItems={menuItems}/>
+            <MenuHeader />
             <Header
                 title="Pokemon Games"
                 desc="This is a simple triple triad card game"

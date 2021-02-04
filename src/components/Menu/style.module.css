@@ -46,6 +46,8 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    opacity: 0;
+    z-index: -1;
 }
 
 .menuContainer::before,
@@ -157,7 +159,7 @@
 
 .menuContainer ul li a:hover::after {
     content: ' »';
-    color: #f300b4;
+    color: #FF9800;
 }
 
 .menuContainer a,
@@ -167,7 +169,7 @@
 
 .menuContainer a:hover,
 .menuContainer a:active {
-    color: #f300b4;
+    color: #FF9800;
 }
 
 @media only screen and (max-width: 649px) {
