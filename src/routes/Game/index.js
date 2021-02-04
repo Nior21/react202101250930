@@ -8,6 +8,7 @@ const GamePage = () => {
     return (
         <>
             <div className={s.root}>
+                <div className={s.moon}></div>
                 <div className={s.container}>
                     <h1>This is Game Page!!!</h1>
                     <ActionButton name="Stop Game" to="/home"/>
