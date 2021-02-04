@@ -3,7 +3,7 @@ import s from './style.module.css';
 
 const Menu = ({menuState, menuItems}) => {
     return (
-        <div className={cn(s.menuContainer, {[s.active]: menuState})}>
+        <div className={cn(s.menuContainer, {[s.active]: menuState, [s.deactive]: !menuState})}>
             <div className={s.overlay} />
             <div>
                 <ul>
