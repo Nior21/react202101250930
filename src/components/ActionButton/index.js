@@ -2,7 +2,7 @@ import { useHistory, Link } from "react-router-dom";
 
 import s from "./style.module.css";
 
-const ActionButton = ({ name, to }) => {
+const ActionButton = ({ name = "", to= "/" }) => {
     const history = useHistory();
 
     const handleClick = () => {

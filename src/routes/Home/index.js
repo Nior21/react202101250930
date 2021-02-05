@@ -6,6 +6,7 @@ import secondImg from '../../assets/bg3.jpg';
 import PokemonCard from "../../components/PokemonCard";
 import pokemons from "../../components/PokemonCard/pokemons.json";
 
+import s from "./style.module.css";
 
 const HomePage = () => {
 
@@ -23,24 +24,6 @@ const HomePage = () => {
                     In the game two players face off against one another, one side playing as "blue", the other as "red" on a 3x3 grid.
                     Each player has five cards in a hand and the aim is to capture the opponent's cards by turning them into the player's own color of red or blue.
                 </p>
-            </Layout>
-            <Layout id="card"
-                    title="Card"
-                    colorTitle="#FEFEFE"
-                    colorBg="#202736"
-            >
-                <div className="flex">
-                    {
-                        pokemons.map(item => <PokemonCard
-                            key={item.id}
-                            id={item.id}
-                            name={item.name}
-                            type={item.type}
-                            img={item.img}
-                            values={item.values}
-                        />)
-                    }
-                </div>
             </Layout>
             <Layout id="about"
                     title="Full Rules"
