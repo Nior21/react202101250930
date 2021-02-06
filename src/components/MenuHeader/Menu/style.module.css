@@ -60,11 +60,11 @@
 }
 
 .menuContainer::before {
-    background: url(https://raw.githubusercontent.com/yagoestevez/fcc-portfolio/master/src/Images/Stars.svg?sanitize=true);
+    background: url("../../../assets/Stars.svg");
 }
 
 .menuContainer::after {
-    background: url(https://raw.githubusercontent.com/yagoestevez/fcc-portfolio/master/src/Images/Trees.svg?sanitize=true) bottom repeat-x;
+    background: url("../../../assets/Trees.svg") bottom repeat-x;
 }
 
 .menuContainer.deactive {
@@ -116,7 +116,7 @@
 @keyframes slide-out {
     from {
         opacity: 1;
-        margin-left: 0;
+        margin-left: 0px;
     }
     to {
         opacity: 0;
@@ -159,7 +159,7 @@
 
 .menuContainer ul li a:hover::after {
     content: ' »';
-    color: #FF9800;
+    color: #f300b4;
 }
 
 .menuContainer a,
@@ -169,7 +169,7 @@
 
 .menuContainer a:hover,
 .menuContainer a:active {
-    color: #FF9800;
+    color: #f300b4;
 }
 
 @media only screen and (max-width: 649px) {

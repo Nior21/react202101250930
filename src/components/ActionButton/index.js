@@ -1,7 +1,8 @@
 import { useHistory, Link } from "react-router-dom";
-import { Button } from 'react-bootstrap';
 
-const ActionButton = ({ name = "Go Home Page", to= "/" }) => {
+import s from "./style.module.css"
+
+const ActionButton = ({ name = "PokemonGames", to= "/", className = s.button }) => {
     const history = useHistory();
 
     const handleClick = () => {
@@ -10,12 +11,9 @@ const ActionButton = ({ name = "Go Home Page", to= "/" }) => {
 
     return (
         <>
-            <Button variant="outline-primary" size="lg" block>
-                <Link to={ to } onClick={handleClick}>
-                    { name }
-                </Link>
-            </Button>
-
+            <Link to={ to } onClick={handleClick} className={className} >
+                { name }
+            </Link>
         </>
     );
 }

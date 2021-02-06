@@ -2,7 +2,6 @@ import cardBackSide from "./assets/card-back-side.jpg";
 import cn from "classnames";
 
 import s from "./style.module.css";
-import POKEMONS from "./pokemons.json";
 
 const PokemonCard = ({key, id, name, img, type, values, isActive, onChangeActive}) => {
 

@@ -1,6 +1,7 @@
 import ActionButton from "../ActionButton";
 
 import s from './style.module.css';
+import {Button} from "react-bootstrap";
 
 const Header = ({ title, desc }) => {
     return (
@@ -11,7 +12,7 @@ const Header = ({ title, desc }) => {
             <div className={s.container}>
                 { title && <h1>{title}</h1> }
                 { desc && <p>{desc}</p> }
-                <ActionButton name="Start Game" to="/game"/>
+                <ActionButton name="Click to Start Game >>>" to="/game" />
             </div>
         </div>
     )
