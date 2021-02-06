@@ -14,9 +14,7 @@ const NavBar = ({ menuState, bgActive = false, onClickHamburger }) => {
         })}>
             <div className={s.navWrapper}>
                 <p>
-                    <ActiveButton
-                        name={"Logo"}
-                    />
+                    <ActiveButton />
                 </p>
                 <div className={cn(s.menuButton, {
                         [s.active]: menuState

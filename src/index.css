@@ -23,7 +23,7 @@ body {
 
 a,
 a:visited {
-  color: #252934;
+  color: #fafafa;
   font-size: 1.4rem;
   text-decoration: none;
   transition: 200ms;
@@ -31,5 +31,5 @@ a:visited {
 
 a:hover,
 a:active {
-  color: #f300b4;
+  color: #fda302;
 }

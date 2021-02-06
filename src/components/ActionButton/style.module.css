@@ -1,13 +1,10 @@
 .button {
     font-size: 1.6rem;
-    color: #fafafa !important;
+    color: #fafafa;
     cursor: default;
-    opacity: 1;
 
 }
 
-.button a:hover,
-.button a:active {
-    color: #f300b4 !important;
-    opacity: 0.1 !important;
+.button_hover {
+    color: #FDA302;
 }
