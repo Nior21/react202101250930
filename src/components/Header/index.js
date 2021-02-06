@@ -2,7 +2,6 @@ import ActionButton from "../ActionButton";
 
 import s from './style.module.css';
 
-
 const Header = ({ title, desc }) => {
     return (
         <div className={s.root}>

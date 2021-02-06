@@ -1,22 +1,15 @@
-import { useState } from "react";
+import cardBackSide from "./assets/card-back-side.jpg";
 import cn from "classnames";
 
-import cardBackSide from "./assets/card-back-side.jpg";
 import s from "./style.module.css";
-const PokemonCard = ({id, name, img, type, values}) => {
-    const [count, setCount] = useState({name: "Zar"})
-    const handleClick = () => {
-        console.log(`####: Card: ${id}`)
-        setCount(prevState => ({
-            ...prevState,
-            lastname: 'Zakharov'
-        }))
-        console.log(`####: Count:`, count)
-    }
+
+const PokemonCard = ({id, name, img, type, values, isActive, onCardClick}) => {
+
+    const handleClick = () => { onCardClick(id) };
 
     return (
         <div className={s.root} onClick={handleClick}>
-            <div className={cn(s.pokemonCard, {[s.active]: true})}>
+            <div className={cn(s.pokemonCard, {[s.active]: isActive})}>
                 <div className={s.cardFront}>
                     <div className={cn(s.wrap, s.front)}>
                         <div className={`${s.pokemon} ${s[type]}`}>
