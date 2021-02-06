@@ -1,18 +1,22 @@
 import { useHistory, Link } from "react-router-dom";
+import { Button } from 'react-bootstrap';
 
-import s from "./style.module.css";
-
-const ActionButton = ({ name = "", to= "/" }) => {
+const ActionButton = ({ name = "Go Home Page", to= "/" }) => {
     const history = useHistory();
 
     const handleClick = () => {
-        history.push( { to })
+        history.push( {to: to})
     }
 
     return (
-        <Link to={ to } className={ s.button } onClick={handleClick}>
-            { name }
-        </Link>
+        <>
+            <Button variant="outline-primary" size="lg" block>
+                <Link to={ to } onClick={handleClick}>
+                    { name }
+                </Link>
+            </Button>
+
+        </>
     );
 }
 

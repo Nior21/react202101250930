@@ -1,11 +1,16 @@
 import ActionButton from "../../components/ActionButton";
+import firstImg from "../../assets/bg1.jpg";
+import Layout from "../../components/Layout";
 
 const ContactPage = () => {
 
     return (
         <>
-            <h1>This is Contact Page!!!</h1>
-            <ActionButton />
+            <Layout id="contact"
+                    title="This is Contact Page!!!"
+            >
+                <ActionButton />
+            </Layout>
         </>
     )
 }
