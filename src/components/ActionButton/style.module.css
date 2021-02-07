@@ -1,0 +1,10 @@
+.button {
+    font-size: 1.6rem;
+    color: #fafafa;
+    cursor: default;
+
+}
+
+.button_hover {
+    color: #FDA302;
+}

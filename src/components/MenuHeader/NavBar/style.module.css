@@ -1,4 +1,4 @@
-.navbar {
+#navbar {
     position: fixed;
     z-index: 9999;
     width: 100%;
@@ -7,11 +7,11 @@
     justify-content: center;
 }
 
-.navbar.bgActive {
+#navbar.bgActive {
     background: #181d23;
 }
 
-.navbar .navWrapper {
+#navbar .navWrapper {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -20,11 +20,12 @@
     padding: 0 2rem;
 }
 
-.navbar .brand {
+#navbar .brand {
     font-size: 1.6rem;
     color: #fafafa;
     cursor: default;
 }
+
 
 /***** Menu Button *****/
 .menuButton {
@@ -63,7 +64,7 @@
 .menuButton:hover > span,
 .menuButton:hover > span::before,
 .menuButton:hover > span::after {
-    background: #f300b4;
+    background: #FDA302;
 }
 
 .menuButton.active > span  {
@@ -85,3 +86,4 @@
         background: #181d23aa;
     }
 }
+
