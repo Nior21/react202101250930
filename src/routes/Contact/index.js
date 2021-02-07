@@ -1,5 +1,4 @@
 import ActionButton from "../../components/ActionButton";
-import firstImg from "../../assets/bg1.jpg";
 import Layout from "../../components/Layout";
 
 const ContactPage = () => {

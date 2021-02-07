@@ -1,6 +1,5 @@
 import { useRouteMatch, Route, Switch, Redirect } from "react-router-dom"
 import cn from "classnames";
-import firebase from "firebase";
 
 import HomePage from "./routes/Home";
 import GamePage from "./routes/Game";
@@ -12,19 +11,7 @@ import NotFoundPage from "./routes/NotFound";
 
 import s from "./style.module.css";
 
-const firebaseConfig = {
-    apiKey: "AIzaSyCpzO1F28gHp5nclrC1aoPJlzmTSasKT-o",
-    authDomain: "pokemon-game-e1680.firebaseapp.com",
-    databaseURL: "https://pokemon-game-e1680-default-rtdb.firebaseio.com",
-    projectId: "pokemon-game-e1680",
-    storageBucket: "pokemon-game-e1680.appspot.com",
-    messagingSenderId: "410074435445",
-    appId: "1:410074435445:web:719c2b2623a1156cba0d3c"
-};
-
-firebase.initializeApp(firebaseConfig);
-
-const database = firebase.database();
+import database from "./service/firebase";
 
 database.ref('pokemons').once('value', (snapshot) => {
     console.log('snapshot', snapshot.val());

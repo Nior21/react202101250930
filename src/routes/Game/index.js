@@ -1,5 +1,3 @@
-import ActionButton from "../../components/ActionButton";
-
 import POKEMONS from "../../components/PokemonCard/pokemons.json";
 import PokemonCard from "../../components/PokemonCard";
 import {useState} from "react";
@@ -10,7 +8,7 @@ import s from "./style.module.css";
 const GamePage = () => {
     const [pokemons, setPokemons] = useState(
         Array.from ( POKEMONS, (value, key) => ({
-                id: POKEMONS[key].id,
+            card_id: POKEMONS[key].id,
                 name: POKEMONS[key].name,
                 type: POKEMONS[key].type,
                 img: POKEMONS[key].img,
@@ -28,16 +26,16 @@ const GamePage = () => {
                     {
                         pokemons.map( (value, key) => <PokemonCard
                             key={key}
-                            id={value.id}
+                            card_id={value.card_id}
                             name={value.name}
                             type={value.type}
                             img={value.img}
                             values={value.values}
                             isActive={value.isActive}
                             onChangeActive={
-                                (id) => {
+                                (card_id) => {
                                     setPokemons((pokemons) => {
-                                        const index = pokemons.findIndex ( (el) => el.id === id )
+                                        const index = pokemons.findIndex ( (el) => el.card_id === card_id )
                                         const oldItem = pokemons[index]
                                         const newItem = {...oldItem, isActive: !oldItem.isActive}
                                         return [
@@ -52,9 +50,6 @@ const GamePage = () => {
                     }
                 </div>
             </Layout>
-            <h1></h1>
-
-
         </>
     )
 }
