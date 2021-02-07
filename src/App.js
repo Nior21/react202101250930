@@ -11,12 +11,6 @@ import NotFoundPage from "./routes/NotFound";
 
 import s from "./style.module.css";
 
-import database from "./service/firebase";
-
-database.ref('pokemons').once('value', (snapshot) => {
-    console.log('snapshot', snapshot.val());
-})
-
 const App = () => {
     const match = useRouteMatch('/');
 

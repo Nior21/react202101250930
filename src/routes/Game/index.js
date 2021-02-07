@@ -1,22 +1,20 @@
-import POKEMONS from "../../components/PokemonCard/pokemons.json";
+import {useState, useEffect} from "react";
 import PokemonCard from "../../components/PokemonCard";
-import {useState} from "react";
 import Layout from "../../components/Layout";
+
+import database from "../../service/firebase";
 
 import s from "./style.module.css";
 
 const GamePage = () => {
-    const [pokemons, setPokemons] = useState(
-        Array.from ( POKEMONS, (value, key) => ({
-            card_id: POKEMONS[key].id,
-                name: POKEMONS[key].name,
-                type: POKEMONS[key].type,
-                img: POKEMONS[key].img,
-                values: POKEMONS[key].values,
-                isActive: false,
-            })
-        )
-    )
+    const [pokemons, setPokemons] = useState({});
+
+    useEffect(() => {
+        database.ref ( "pokemons" ).once ("value", (snapshot) => {
+            setPokemons (snapshot.val ())
+        })
+    }, [])
+
     return (
         <>
             <Layout id="game"
@@ -24,29 +22,31 @@ const GamePage = () => {
             >
                 <div className={s.flex}>
                     {
-                        pokemons.map( (value, key) => <PokemonCard
-                            key={key}
-                            card_id={value.card_id}
-                            name={value.name}
-                            type={value.type}
-                            img={value.img}
-                            values={value.values}
-                            isActive={value.isActive}
-                            onChangeActive={
-                                (card_id) => {
-                                    setPokemons((pokemons) => {
-                                        const index = pokemons.findIndex ( (el) => el.card_id === card_id )
-                                        const oldItem = pokemons[index]
-                                        const newItem = {...oldItem, isActive: !oldItem.isActive}
-                                        return [
-                                            ...pokemons.slice ( 0, index ),
-                                            newItem,
-                                            ...pokemons.slice ( index + 1 ),
-                                        ]
-                                    })
+                        Object.entries(pokemons).map((
+                            [key, {id, name, img, type, values, isActive=true}]
+                        ) =>
+                            <PokemonCard
+                                key={key}
+                                id={id}
+                                name={name}
+                                img={img}
+                                type={type}
+                                values={values}
+                                isActive={isActive}
+                                onChangeActive={
+                                    (id) => {
+                                        setPokemons(prevState => {
+                                            return Array.from ( prevState, (pokemon) => {
+                                                if (pokemon.id === id) {
+                                                    pokemon.isActive = true
+                                                }
+                                                return pokemon
+                                            } )
+                                        })
+                                    }
                                 }
-                            }
-                        />)
+                            />
+                        )
                     }
                 </div>
             </Layout>

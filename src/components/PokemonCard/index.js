@@ -3,10 +3,10 @@ import cn from "classnames";
 
 import s from "./style.module.css";
 
-const PokemonCard = ({card_id, name, img, type, values, isActive, onChangeActive}) => {
+const PokemonCard = ({id, name, img, type, values, isActive=false, onChangeActive}) => {
 
     const handleClick = () => {
-        onChangeActive && onChangeActive(card_id)
+        onChangeActive && onChangeActive(id)
     };
 
     return (
@@ -25,7 +25,7 @@ const PokemonCard = ({card_id, name, img, type, values, isActive, onChangeActive
                                 <img src={img} alt={name} />
                             </div>
                             <div className={s.info}>
-                                <span className={s.number}>#{card_id}</span>
+                                <span className={s.number}>#{id}</span>
                                 <h3 className={s.name}>{name}</h3>
                                 <small className={s[type]}>
                                     Type: <span>{type}</span>
