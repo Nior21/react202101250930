@@ -7,7 +7,7 @@ import database from "../../service/firebase";
 import s from "./style.module.css";
 
 import {Button} from "react-bootstrap";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "../../bootstrap.min.css"
 
 const GamePage = () => {
     const [pokemons, setPokemons] = useState ( {} );
@@ -68,7 +68,6 @@ const GamePage = () => {
                 },
             };
 
-        // update ( values :  Object ,  onComplete ? :  ( a :  Error | null ) => any ) : Promise < any >
         database.ref().update(updates)
 
         return load()
