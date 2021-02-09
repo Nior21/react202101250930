@@ -5,18 +5,20 @@ import Layout from "../../components/Layout";
 import database from "../../service/firebase";
 
 import s from "./style.module.css";
-import {generateUniqueID} from "web-vitals/dist/lib/generateUniqueID";
+
+import {Button} from "react-bootstrap";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const GamePage = () => {
-    const [pokemons, setPokemons] = useState({});
-
-    useEffect(() => {
-        database.ref ( "pokemons" ).once("value", (snapshot) => {
-            setPokemons (snapshot.val ())
-        })
+    const [pokemons, setPokemons] = useState ( {} );
+    const load = () => database.ref("pokemons" ).once("value", (snapshot) => {
+        setPokemons(snapshot.val())
+    } )
+    useEffect (() => {
+        load()
     }, [])
 
-    const onChangeActive = (id) => {
+    const handleChangeActive = (id) => {
         setPokemons(prevState => {
             return Object.entries(prevState).reduce((accumulator, currentValue) => {
                 const pokemon = {...currentValue[1]}
@@ -36,8 +38,8 @@ const GamePage = () => {
     }
 
     const addPokemon = () => {
-        const newKey = database.ref().child("pokemons").push().key;
 
+        const newKey = database.ref().child("pokemons").push().key;
 
         const updates = {};
         updates["/pokemons/" + newKey] =
@@ -45,7 +47,7 @@ const GamePage = () => {
                 abilities: ["keen-eye", "tangled-feet", "big-pecks"],
                 base_experience: 122,
                 height: 11,
-                id: 25,
+                id: 17,
                 img:
                     "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/17.png",
                 name: "pidgeotto",
@@ -66,10 +68,36 @@ const GamePage = () => {
                 },
             };
 
-        return database.ref().update(updates);
+        // update ( values :  Object ,  onComplete ? :  ( a :  Error | null ) => any ) : Promise < any >
+        database.ref().update(updates)
+
+        return load()
     };
 
 
+
+    const deck = Object.entries ( pokemons ).map (
+        ([key,
+             {
+                 id,
+                 name,
+                 img,
+                 type,
+                 values,
+                 isActive = true
+             }
+         ]) =>
+            <PokemonCard
+                key={ key }
+                id={ id }
+                name={ name }
+                img={ img }
+                type={ type }
+                values={ values }
+                isActive={ isActive }
+                onChangeActive={ handleChangeActive }
+            />
+    )
 
     return (
         <>
@@ -77,26 +105,13 @@ const GamePage = () => {
                     title="Game"
             >
                 <div>
-                    <button onClick={addPokemon} className="btn btn-secondary mr-2">
-                        Add Pokemon
-                    </button>
+                    <Button variant="dark" onClick={addPokemon} block>
+                        Add Card
+                    </Button>
                 </div>
                 <div className={s.flex}>
                     {
-                        Object.entries(pokemons).map((
-                            [key, {id, name, img, type, values, isActive=true}]
-                        ) =>
-                            <PokemonCard
-                                key={key}
-                                id={id}
-                                name={name}
-                                img={img}
-                                type={type}
-                                values={values}
-                                isActive={isActive}
-                                onChangeActive={onChangeActive}
-                            />
-                        )
+                        deck
                     }
                 </div>
             </Layout>
