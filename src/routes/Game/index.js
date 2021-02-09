@@ -15,6 +15,25 @@ const GamePage = () => {
         })
     }, [])
 
+    const onChangeActive = (id) => {
+        setPokemons(prevState => {
+            return Object.entries(prevState).reduce((accumulator, currentValue) => {
+                const pokemon = {...currentValue[1]}
+                if (pokemon.id === id) {
+                    database
+                        .ref ( "pokemons/" + currentValue[0] )
+                        .set ( {
+                            ...pokemon,
+                            isActive: !pokemon.isActive,
+                        } )
+                        .then ( pokemon.isActive = !pokemon.isActive )
+                }
+                accumulator[currentValue[0]] = pokemon
+                return accumulator;
+            }, {})
+        })
+    }
+
     return (
         <>
             <Layout id="game"
@@ -33,18 +52,7 @@ const GamePage = () => {
                                 type={type}
                                 values={values}
                                 isActive={isActive}
-                                onChangeActive={
-                                    (id) => {
-                                        setPokemons(prevState => {
-                                            return Array.from ( prevState, (pokemon) => {
-                                                if (pokemon.id === id) {
-                                                    pokemon.isActive = true
-                                                }
-                                                return pokemon
-                                            } )
-                                        })
-                                    }
-                                }
+                                onChangeActive={onChangeActive}
                             />
                         )
                     }
