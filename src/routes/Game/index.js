@@ -18,18 +18,18 @@ const GamePage = () => {
         load()
     }, [])
 
-    const handleChangeActive = (id) => {
+     const handleChangeActive = (uniqID) => {
         setPokemons(prevState => {
             return Object.entries(prevState).reduce((accumulator, currentValue) => {
                 const pokemon = {...currentValue[1]}
-                if (pokemon.id === id) {
+                if (currentValue[0] === uniqID) {
                     database
                         .ref ( "pokemons/" + currentValue[0] )
                         .set ( {
                             ...pokemon,
                             isActive: !pokemon.isActive,
                         } )
-                        .then ( pokemon.isActive = !pokemon.isActive )
+                        .then (pokemon.isActive = !pokemon.isActive)
                 }
                 accumulator[currentValue[0]] = pokemon
                 return accumulator;
@@ -89,6 +89,7 @@ const GamePage = () => {
          ]) =>
             <PokemonCard
                 key={ key }
+                uniqID={ key }
                 id={ id }
                 name={ name }
                 img={ img }
