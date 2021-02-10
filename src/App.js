@@ -10,31 +10,45 @@ import ContactPage from "./routes/Contact";
 import NotFoundPage from "./routes/NotFound";
 
 import s from "./style.module.css";
+import {TestContext} from "./context/testContext";
+import {useState} from "react";
 
 const App = () => {
     const match = useRouteMatch('/');
+    const [theme, setTheme] = useState('Light');
+
+    const handlerChangeTheme = (val) => {
+        setTheme(val);
+    }
 
     return (
-        <Switch>
-            <Route path="/404" component={NotFoundPage} />
-            <Route>
-                <MenuHeader bgActive={!match.isExact} />
-                <div className={cn(s.wrap, {
-                    [s.isHomePage]: match.isExact
-                })}>
-                    <Switch>
-                        <Route path="/" exact component={HomePage} />
-                        <Route path="/home" render={() => (<Redirect to="/" />)} />
-                        <Route path="/game" component={GamePage} />
-                        <Route path="/about" component={AboutPage} />
-                        <Route path="/contact" component={ContactPage} />
-                        <Route render={() => (<Redirect to="/404" />)} />
-                    </Switch>
-                </div>
-                <Footer />
-            </Route>
-        </Switch>
+
+        <TestContext.Provider value={{
+            theme,
+            onChangeTheme: handlerChangeTheme
+        }}>
+            <Switch>
+                <Route path="/404" component={NotFoundPage} />
+                <Route>
+                    <MenuHeader bgActive={!match.isExact} />
+                    <div className={cn(s.wrap, {
+                        [s.isHomePage]: match.isExact
+                    })}>
+                        <Switch>
+                            <Route path="/" exact component={HomePage} />
+                            <Route path="/home" render={() => (<Redirect to="/" />)} />
+                            <Route path="/game" component={GamePage} />
+                            <Route path="/about" component={AboutPage} />
+                            <Route path="/contact" component={ContactPage} />
+                            <Route render={() => (<Redirect to="/404" />)} />
+                        </Switch>
+                    </div>
+                    <Footer />
+                </Route>
+            </Switch>
+        </TestContext.Provider>
     )
+
 }
 
 export default App;
