@@ -8,9 +8,13 @@ import "../../../../bootstrap.min.css"
 import {FireBaseContext} from "../../../../context/firebaseContext";
 
 import s from "./style.module.css"
+import {PokemonContext} from "../../../../context/pokemonContext";
+import {useHistory} from "react-router-dom";
 
 const StartPage = () => {
     const firebase = useContext(FireBaseContext)
+    const pokemonsContext = useContext(PokemonContext)
+    const history = useHistory()
     const [pokemons, setPokemons] = useState ( {} );
 
 
@@ -28,6 +32,9 @@ const StartPage = () => {
     }
 
     const handleChangeSelected = key => {
+        const pokemon = {...pokemons[key]}
+        pokemonsContext.onSelectedPokemons(key, pokemon)
+
         setPokemons(prevState => ({
                 ...prevState,
                 [key]: {
@@ -60,17 +67,31 @@ const StartPage = () => {
                 className={ s.card }
                 isActive={ true }
                 isSelected={ selected }
-                onChangeActive={ () => handleChangeSelected ( key ) }
+                onChangeActive={() => {
+                    if (Object.keys(pokemonsContext.pokemons).length < 5 || selected) {
+                        handleChangeSelected ( key )
+                    }
+                }}
+
             />
     );
+
+    function handleStartGameClick() {
+        history.push("/game/board")
+    }
 
     return (
         <>
             <Layout id="game"
                     title="Game"
             >
-                <div>
-                    <Button variant="dark" block>
+                <div className={s.buttonWrap}>
+                    <Button
+                        variant="dark"
+                        block
+                        onClick={handleStartGameClick}
+                        disabled={Object.keys(pokemonsContext.pokemons).length < 5}
+                    >
                         Start Game
                     </Button>
                 </div>

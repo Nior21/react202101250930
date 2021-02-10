@@ -1,4 +1,3 @@
-import cardBackSide from "./assets/card-back-side.jpg";
 import cn from "classnames";
 import s from "./style.module.css";
 
