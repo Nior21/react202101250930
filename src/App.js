@@ -1,32 +1,24 @@
-import { useRouteMatch, Route, Switch, Redirect } from "react-router-dom"
-import cn from "classnames";
+import { useRouteMatch, Route, Switch, Redirect } from 'react-router-dom'
+import cn from 'classnames';
 
-import HomePage from "./routes/Home";
-import GamePage from "./routes/Game";
-import MenuHeader from "./components/MenuHeader";
-import Footer from "./components/Footer";
-import AboutPage from "./routes/About";
-import ContactPage from "./routes/Contact";
-import NotFoundPage from "./routes/NotFound";
+import HomePage from './routes/Home';
+import GamePage from './routes/Game';
+import MenuHeader from './components/MenuHeader';
+import Footer from './components/Footer';
+import AboutPage from './routes/About';
+import ContactPage from './routes/Contact';
+import NotFoundPage from './routes/NotFound';
 
-import s from "./style.module.css";
-import {TestContext} from "./context/testContext";
-import {useState} from "react";
+import {FireBaseContext} from './context/firebaseContext';
+import Firebase from './service/firebase'
+
+import s from './style.module.css';
 
 const App = () => {
     const match = useRouteMatch('/');
-    const [theme, setTheme] = useState('Light');
-
-    const handlerChangeTheme = (val) => {
-        setTheme(val);
-    }
 
     return (
-
-        <TestContext.Provider value={{
-            theme,
-            onChangeTheme: handlerChangeTheme
-        }}>
+        <FireBaseContext.Provider value={new Firebase()}>
             <Switch>
                 <Route path="/404" component={NotFoundPage} />
                 <Route>
@@ -46,7 +38,7 @@ const App = () => {
                     <Footer />
                 </Route>
             </Switch>
-        </TestContext.Provider>
+        </FireBaseContext.Provider>
     )
 
 }
