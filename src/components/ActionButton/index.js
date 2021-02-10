@@ -2,7 +2,7 @@ import { useHistory, Link } from "react-router-dom";
 
 import s from "./style.module.css"
 
-const ActionButton = ({ name = "< Home", to= "/", className = s.button, activeClassName = s.button_hover}) => {
+const ActionButton = ({ name = "< Home", to= "/", className = s.button }) => {
     const history = useHistory();
 
     const handleClick = () => {
@@ -14,7 +14,6 @@ const ActionButton = ({ name = "< Home", to= "/", className = s.button, activeCl
             to={ to }
             onClick={handleClick}
             className={className}
-            activeClassName={activeClassName}
         >
             { name }
         </Link>

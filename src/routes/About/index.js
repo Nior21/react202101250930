@@ -1,4 +1,3 @@
-import ActionButton from "../../components/ActionButton";
 import secondImg from "../../assets/bg3.jpg";
 import Layout from "../../components/Layout";
 import firstImg from "../../assets/bg1.jpg";
