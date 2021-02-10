@@ -11,11 +11,11 @@ import "../../bootstrap.min.css"
 
 const GamePage = () => {
     const [pokemons, setPokemons] = useState ( {} );
-    const load = () => database.ref("pokemons" ).once("value", (snapshot) => {
+    const getPokemons = () => database.ref("pokemons" ).once("value", (snapshot) => {
         setPokemons(snapshot.val())
     } )
     useEffect (() => {
-        load()
+        getPokemons()
     }, [])
 
      const handleChangeActive = (uniqID) => {
@@ -37,7 +37,7 @@ const GamePage = () => {
         })
     }
 
-    const addPokemon = () => {
+    const handleAddPokemon = () => {
 
         const newKey = database.ref().child("pokemons").push().key;
 
@@ -70,7 +70,7 @@ const GamePage = () => {
 
         database.ref().update(updates)
 
-        return load()
+        return getPokemons()
     };
 
 
@@ -105,7 +105,7 @@ const GamePage = () => {
                     title="Game"
             >
                 <div>
-                    <Button variant="dark" onClick={addPokemon} block>
+                    <Button variant="dark" onClick={handleAddPokemon} block>
                         Add Card
                     </Button>
                 </div>
