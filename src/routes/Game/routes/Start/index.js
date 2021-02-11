@@ -26,9 +26,8 @@ const StartPage = () => {
         return () => firebase.offPokemonSocket();
     }, [])
 
-    const getPokemons = async () => {
-        const response = await firebase.getPokemonsOnce()
-        setPokemons(response)
+    function handleStartGameClick() {
+        history.push("/game/board")
     }
 
     const handleChangeSelected = key => {
@@ -45,40 +44,37 @@ const StartPage = () => {
         ))
     }
 
+    const handleChangeActive = () => {
+        if (Object.keys(pokemonsContext.pokemons).length < 5 || selected) {
+            handleChangeSelected ( key )
+        }
+    }
+
     const deck = Object.entries ( pokemons ).map (
         ([key,
-             {
-                 id,
-                 name,
-                 img,
-                 type,
-                 values,
-                 selected
-             }
+         {
+             id,
+             name,
+             img,
+             type,
+             values,
+             selected
+         }
          ]) =>
-            <PokemonCard
-                key={ key }
-                uniqID={ key }
-                id={ id }
-                name={ name }
-                img={ img }
-                type={ type }
-                values={ values }
-                className={ s.card }
-                isActive={ true }
-                isSelected={ selected }
-                onChangeActive={() => {
-                    if (Object.keys(pokemonsContext.pokemons).length < 5 || selected) {
-                        handleChangeSelected ( key )
-                    }
-                }}
-
-            />
+        <PokemonCard
+            key={ key }
+            uniqID={ key }
+            id={ id }
+            name={ name }
+            img={ img }
+            type={ type }
+            values={ values }
+            className={ s.card }
+            isActive={ true }
+            isSelected={ selected }
+            onChangeActive={ handleChangeActive }
+        />
     );
-
-    function handleStartGameClick() {
-        history.push("/game/board")
-    }
 
     return (
         <>

@@ -4,11 +4,11 @@ import s from "./style.module.css";
 const PokemonCard = (
     {
         uniqID,
-        id=666,
-        name="error",
+        id=0,
+        name="NoName",
         img="/",
-        type="error",
-        values=[6, 6, 6, 6],
+        type="Unknown",
+        values=[0, 0, 0, 0],
         className,
         minimize,
         isActive,
