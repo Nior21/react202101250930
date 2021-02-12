@@ -4,7 +4,7 @@ import cn from "classnames"
 import s from "./style.module.css"
 import {useState} from "react";
 
-const PlayerBoard = ({cards, onClickCard}) => {
+const PlayerBoard = ({player, cards, onClickCard}) => {
     const [isSelected, setSelected] = useState ( null )
     return (
         <>
@@ -16,7 +16,10 @@ const PlayerBoard = ({cards, onClickCard}) => {
                         } ) }
                         onClick={() => {
                             setSelected ( item.id )
-                            onClickCard && onClickCard(item)
+                            onClickCard && onClickCard( {
+                                player,
+                                ...item,
+                            })
                         }}
                     >
                         <PokemonCard
