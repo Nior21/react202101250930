@@ -1,16 +1,23 @@
-import s from './style.module.css';
 import {useContext} from "react";
+import {useHistory} from "react-router-dom"
 import {PokemonContext} from "../../../../context/pokemonContext";
 import PokemonCard from "../../../../components/PokemonCard";
 
+import s from './style.module.css';
+
 const BoardPage = () => {
-    const { pokemons } = useContext ( PokemonContext )
+    const {pokemons} = useContext ( PokemonContext )
+    const history = useHistory()
+
+    if (Object.keys(pokemons).length === 0) {
+        history.replace("/game")
+    }
 
     return (
         <div className={ s.root }>
             <div className={ s.playerOne }>
                 {
-                    Object.values(pokemons).map( ({id, name, img, type, values}) => (
+                    Object.values ( pokemons ).map ( ({id, name, img, type, values}) => (
                         <PokemonCard
                             key={ id }
                             id={ id }
@@ -22,7 +29,7 @@ const BoardPage = () => {
                             minimize
                             isActive
                         />
-                    ))
+                    ) )
                 }
             </div>
             <div className={ s.board }>

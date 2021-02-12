@@ -44,12 +44,6 @@ const StartPage = () => {
         ))
     }
 
-    const handleChangeActive = () => {
-        if (Object.keys(pokemonsContext.pokemons).length < 5 || selected) {
-            handleChangeSelected ( key )
-        }
-    }
-
     const deck = Object.entries ( pokemons ).map (
         ([key,
          {
@@ -61,19 +55,24 @@ const StartPage = () => {
              selected
          }
          ]) =>
-        <PokemonCard
-            key={ key }
-            uniqID={ key }
-            id={ id }
-            name={ name }
-            img={ img }
-            type={ type }
-            values={ values }
-            className={ s.card }
-            isActive={ true }
-            isSelected={ selected }
-            onChangeActive={ handleChangeActive }
-        />
+            <PokemonCard
+                key={ key }
+                uniqID={ key }
+                id={ id }
+                name={ name }
+                img={ img }
+                type={ type }
+                values={ values }
+                className={ s.card }
+                isActive={ true }
+                isSelected={ selected }
+                onChangeActive={() => {
+                    if (Object.keys(pokemonsContext.pokemons).length < 5 || selected) {
+                        handleChangeSelected ( key )
+                    }
+                }}
+
+            />
     );
 
     return (
