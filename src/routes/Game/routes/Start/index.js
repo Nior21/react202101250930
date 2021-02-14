@@ -1,6 +1,5 @@
 import {useState, useEffect, useContext} from "react";
 import PokemonCard from "../../../../components/PokemonCard";
-import Layout from "../../../../components/Layout";
 
 import {Button} from "react-bootstrap";
 import "../../../../bootstrap.min.css"
@@ -13,7 +12,7 @@ import {useHistory} from "react-router-dom";
 
 const StartPage = () => {
     const firebase = useContext(FireBaseContext)
-    const pokemonsContext = useContext(PokemonContext)
+    const pokemonsContext = useContext(PokemonContext)                              // Получаем контекст в переменную
     const history = useHistory()
     const [pokemons, setPokemons] = useState ( {} );
 
@@ -30,11 +29,12 @@ const StartPage = () => {
         history.push("/game/board")
     }
 
-    const handleChangeSelected = key => {
+    const handleChangeSelected = key => {                   // Обрабатываем щелчок на карточке покемона
         const pokemon = {...pokemons[key]}
-        pokemonsContext.onSelectedPokemons(key, pokemon)
+        pokemonsContext.setDeck1(key, pokemon)
 
-        setPokemons(prevState => ({
+
+        setPokemons(prevState => ({                 // Изменение состояния выбранности карточки на противоположное
                 ...prevState,
                 [key]: {
                     ...prevState[key],
@@ -65,38 +65,33 @@ const StartPage = () => {
                 values={ values }
                 className={ s.card }
                 isActive={ true }
-                isSelected={ selected }
-                onChangeActive={() => {
-                    if (Object.keys(pokemonsContext.pokemons).length < 5 || selected) {
+                isSelected={ selected }                            // Передаем в созданную карточку параметр выбранности
+                onChangeActive={ () => {
+                    if (Object.keys ( pokemonsContext.pokemons ).length < 5 || selected) {
                         handleChangeSelected ( key )
                     }
-                }}
-
+                } }
             />
     );
 
     return (
         <>
-            <Layout id="game"
-                    title="Game"
-            >
-                <div className={s.buttonWrap}>
-                    <Button
-                        variant="dark"
-                        block
-                        onClick={handleStartGameClick}
-                        disabled={Object.keys(pokemonsContext.pokemons).length < 5}
-                    >
-                        Start Game
-                    </Button>
-                </div>
-                <br/>
-                <div className={ s.flex }>
-                    {
-                        deck
-                    }
-                </div>
-            </Layout>
+            <div className={s.buttonWrap}>
+                <Button
+                    variant="dark"
+                    block
+                    onClick={handleStartGameClick}
+                    disabled={Object.keys(pokemonsContext.pokemons).length < 5}
+                >
+                    Start Game
+                </Button>
+            </div>
+            <br/>
+            <div className={ s.flex }>
+                {
+                    deck
+                }
+            </div>
         </>
     );
 }

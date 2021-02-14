@@ -10,24 +10,27 @@ const counterWin = (board, player1, player2) => {
     let player1Count = player1.length
     let player2Count = player2.length
 
-    board.forEach(item => {
+    board.forEach ( item => {
         if (item.card.possession === 'red') {
             player2Count++
         }
         if (item.card.possession === 'blue') {
             player1Count++
         }
-    })
+    } )
 
     return [player1Count, player2Count]
 }
 
 const BoardPage = () => {
-    const {pokemons} = useContext ( PokemonContext )
+    const pokemonContext = useContext ( PokemonContext )
     const [board, setBoard] = useState ( [] )
 
     const [player1, setPlayer1] = useState ( () => {
-        return Object.values ( pokemons ).map ( item => ({
+        console.log ( `####: pokemonContext`, pokemonContext )
+        console.log ( `####: pokemonContext.pokemons`, pokemonContext.pokemons )
+
+        return Object.values ( pokemonContext.pokemons ).map ( item => ({
             ...item,
             possession: 'blue',
         }) )
@@ -41,10 +44,8 @@ const BoardPage = () => {
 
     const history = useHistory ()
 
-    console.log ( '####: board', board, player2 )
-
-    if (Object.keys(pokemons).length === 0) {
-        history.replace("/game")
+    if (Object.keys ( {pokemonContext} ).length === 0) {
+        history.replace ( "/game" )
     }
 
     useEffect ( async () => {
@@ -62,12 +63,13 @@ const BoardPage = () => {
                 possession: 'red',
             }) )
         } )
+        console.log ( `####: player2Request.data`, player2Request.data )
+        pokemonContext.setDeck2 ( player2Request.data ) // сохраняем начальное значение player2 в константу сразу после загрузки данных
+
     }, [] )
 
 
     const handleClickBoardPlate = async (position) => {
-        console.log ( '###: position', position )
-        console.log ( '###: choiceCard', choiceCard )
 
         if (choiceCard) {
             const params = {
@@ -86,13 +88,11 @@ const BoardPage = () => {
 
             const request = await res.json ();
 
-            console.log ( '####: request', request )
             if (choiceCard.player === 1) {
-
                 setPlayer1 ( prevState => prevState.filter ( item => item.id !== choiceCard.id ) )
             }
-            if (choiceCard.player === 2) {
 
+            if (choiceCard.player === 2) {
                 setPlayer2 ( prevState => prevState.filter ( item => item.id !== choiceCard.id ) )
             }
 
@@ -104,19 +104,23 @@ const BoardPage = () => {
         }
     }
 
-    useEffect(() => {
+    useEffect ( () => {
         if (steps === 9) {
-            const [count1, count2] = counterWin(board, player1, player2)
+            const [count1, count2] = counterWin ( board, player1, player2 )
 
             if (count1 > count2) {
-                alert('WIN')
+                alert ( 'WIN' )
+                console.log("####: pokemonContext.isWin", pokemonContext.isWin)
+                pokemonContext.setWin(true)
+                console.log("####: pokemonContext.isWin", pokemonContext.isWin)
+                history.replace ( "/game/finish" )
             } else if (count1 < count2) {
-                alert("LOSE")
+                alert ( "LOSE" )
             } else {
-                alert('DRAW')
+                alert ( 'DRAW' )
             }
         }
-    }, [steps])
+    }, [steps] )
 
     return (
         <div className={ s.root }>
