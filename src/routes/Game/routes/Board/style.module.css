@@ -38,6 +38,7 @@
 .card:first-child {
     margin-top: 0;
 }
+
 .playerOne {
     position: absolute;
     top: 4.3vw;

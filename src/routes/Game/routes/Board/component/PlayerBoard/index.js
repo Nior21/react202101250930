@@ -8,6 +8,7 @@ const PlayerBoard = ({player, cards, onClickCard}) => {
     const [isSelected, setSelected] = useState ( null )
     return (
         <>
+            {console.log(`####: cards`, cards)}
             {
                 cards.map ( (item) => (
                     <div
@@ -23,7 +24,7 @@ const PlayerBoard = ({player, cards, onClickCard}) => {
                         }}
                     >
                         <PokemonCard
-                            key={ item.id }
+                            key={ item.key }
                             id={ item.id }
                             name={ item.name }
                             img={ item.img }

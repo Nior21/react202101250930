@@ -4,12 +4,13 @@ import BoardPage from "./routes/Board";
 import FinishPage from "./routes/Finish";
 import {PokemonContext} from "../../context/pokemonContext";
 import {useState} from "react";
+import TestPage from "./routes/Test";
 
 const GamePage = () => {
 
     const [selectedPokemons, setSelectedPokemons] = useState ( {} )
 
-    const [selectedPokemonsOnFinish, setSelectedPokemonsOnFinish] = useState ( {} ) // TODO: Использовать для записи выбранной карты на Finish (... или без контекста обойтись?)
+   //const [selectedPokemonsOnFinish, setSelectedPokemonsOnFinish] = useState ( {} ) // TODO: Использовать для записи выбранной карты на Finish (... или без контекста обойтись?)
 
     const [deck2, setDeck2] = useState ( {} )
 
@@ -41,6 +42,21 @@ const GamePage = () => {
         setDeck2(cards)
         console.log(`####: Deck2`, cards)
         // TODO: Здесь можно расположить выбор карты при победе (?)
+            /**
+             * setSelectedPokemons ( prevState => {
+             * if (prevState[key]) {
+             *    const copyState = {...prevState}
+             *    delete copyState[key]
+             *
+             *    return copyState
+             * }
+             * return {
+             *    ...prevState,
+             *    [key]: pokemon,
+             * }
+             * } )
+             * */
+
     };
 
     const handleClearState = () => {
@@ -51,7 +67,7 @@ const GamePage = () => {
 
     return (
         <PokemonContext.Provider value={ {
-            pokemons: selectedPokemons,
+            deck1: selectedPokemons,
             setDeck1: handleSetDeck1,
             deck2: deck2,
             setDeck2: handleSetDeck2,
@@ -65,6 +81,7 @@ const GamePage = () => {
                 <Route path={ `${ match.path }/` } exact component={ StartPage }/>
                 <Route path={ `${ match.path }/board` } component={ BoardPage }/>
                 <Route path={ `${ match.path }/finish` } component={ FinishPage }/>
+                <Route path={ `${ match.path }/test` } component={ TestPage }/>
             </Switch>
         </PokemonContext.Provider>
     );

@@ -23,18 +23,22 @@ const counterWin = (board, player1, player2) => {
 }
 
 const BoardPage = () => {
+
     const pokemonContext = useContext ( PokemonContext )
+
     const [board, setBoard] = useState ( [] )
 
     const [player1, setPlayer1] = useState ( () => {
-        console.log ( `####: pokemonContext`, pokemonContext )
-        console.log ( `####: pokemonContext.pokemons`, pokemonContext.pokemons )
 
-        return Object.values ( pokemonContext.pokemons ).map ( item => ({
+        return Object.values ( pokemonContext.deck1 ).map ( item => ({
             ...item,
             possession: 'blue',
         }) )
     } )
+
+
+    const history = useHistory ()
+
 
     const [player2, setPlayer2] = useState ( [] )
 
@@ -42,30 +46,38 @@ const BoardPage = () => {
 
     const [steps, setStep] = useState ( 0 )
 
-    const history = useHistory ()
 
-    if (Object.keys ( {pokemonContext} ).length === 0) {
-        history.replace ( "/game" )
-    }
 
-    useEffect ( async () => {
-        const boardResponse = await fetch ( 'https://reactmarathon-api.netlify.app/api/board' )
-        const boardRequest = await boardResponse.json ()
+    useEffect ( () => {
 
-        setBoard ( boardRequest.data )
 
-        const player2Response = await fetch ( 'https://reactmarathon-api.netlify.app/api/create-player' )
-        const player2Request = await player2Response.json ()
 
+        if (Object.keys ( pokemonContext.deck1 ).length === 0) {
+            pokemonContext.onClearState()
+            history.replace ( "/game" )
+        }
+
+        const boardResponse = async () => {
+            return (await fetch ( 'https://reactmarathon-api.netlify.app/api/board' ))
+        }
+        console.log("####: boardResponse", boardResponse)
+
+        //setBoard ( boardResponse.data )
+
+        const player2Response = async () => {
+            return (await fetch ( 'https://reactmarathon-api.netlify.app/api/create-player' ))
+        }
+        console.log("####: player2Response", player2Response)
+
+        /**
         setPlayer2 ( () => {
-            return player2Request.data.map ( item => ({
+            return player2Response.data.map ( item => ({
                 ...item,
                 possession: 'red',
             }) )
         } )
-        console.log ( `####: player2Request.data`, player2Request.data )
-        pokemonContext.setDeck2 ( player2Request.data ) // сохраняем начальное значение player2 в константу сразу после загрузки данных
-
+         */
+        //pokemonContext.setDeck2 ( player2Response.data ) // сохраняем начальное значение player2 в константу сразу после загрузки данных
     }, [] )
 
 
@@ -98,21 +110,21 @@ const BoardPage = () => {
 
             setBoard ( request.data )
             setStep ( prevState => {
-                const count = prevState + 1
-                return count
+                return prevState + 1
             } )
         }
     }
 
     useEffect ( () => {
+        // other code
         if (steps === 9) {
             const [count1, count2] = counterWin ( board, player1, player2 )
 
             if (count1 > count2) {
                 alert ( 'WIN' )
-                console.log("####: pokemonContext.isWin", pokemonContext.isWin)
-                pokemonContext.setWin(true)
-                console.log("####: pokemonContext.isWin", pokemonContext.isWin)
+                console.log ( "####: pokemonContext.isWin", pokemonContext.isWin )
+                pokemonContext.setWin ( true )
+                console.log ( "####: pokemonContext.isWin", pokemonContext.isWin )
                 history.replace ( "/game/finish" )
             } else if (count1 < count2) {
                 alert ( "LOSE" )

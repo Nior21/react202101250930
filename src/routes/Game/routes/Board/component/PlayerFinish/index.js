@@ -1,4 +1,4 @@
-import PokemonCard from "../../../../../components/PokemonCard"
+import PokemonCard from "../../../../../../components/PokemonCard"
 import cn from "classnames"
 
 import s from "./style.module.css"

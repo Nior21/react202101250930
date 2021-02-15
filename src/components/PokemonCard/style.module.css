@@ -1,3 +1,9 @@
+:root {
+    --main-size-k: 0.5;
+    --heigth_minimaze: 0.5;
+}
+
+
 .pokemonCard {
     --fire: #FDDFDF;
     --grass: #DEFDE0;
@@ -36,15 +42,15 @@
 }
 
 .pokemonCard.selected {
-    margin-top: -20px;
-    margin-bottom: 20px;
+    margin-top: calc(var(--main-size-k) * -4vh);
+    margin-bottom: calc(var(--main-size-k) * 4vh);
 }
 
 .cardFront,
 .cardBack {
-    width: 100%;
-    height: 100%;
-    border-radius: 24px;
+    width: calc(var(--main-size-k) * 57vh);
+    height: calc(var(--main-size-k) * 85vh);
+    border-radius: calc(var(--main-size-k) * 4vh);
     background: var(--normal);
     position: absolute;
     top: 0;
@@ -63,7 +69,7 @@
 
 .pokemonCard:active .wrap.front::after,
 .pokemonCard:focus .wrap.front::after {
-    border-colot: var(--rock);
+    border-color: var(--rock);
 }
 
 .wrap {
@@ -76,20 +82,20 @@
 
 .wrap.front {
     z-index: 2;
-    padding: 10px;
+    padding: 0;
 }
 
 .wrap.front::after {
     content: '';
     display: block;
-    width: 100%;
-    height: 100%;
+    width: calc(var(--main-size-k) * 57vh);
+    height: calc(var(--main-size-k) * 85vh);
     position: absolute;
-    border: 12px solid #fce756;
-    top: 50%;
-    left: 50%;
+    border: calc(var(--main-size-k) * 3vh) solid #fce756;
+    top: calc(var(--main-size-k) * 42.5vh);
+    left: calc(var(--main-size-k) * 28.5vh);
     transform: translate(-50%, -50%);
-    border-radius: 24px;
+    border-radius: calc(var(--main-size-k) * 4vh);
 }
 
 .wrap.back {
@@ -107,15 +113,15 @@
 
 .cardBack img {
     height: 100%;
-    border-radius: 24px;
+    border-radius: calc(var(--main-size-k) * 5vh);
 }
 
 .pokemon {
     width: 100%;
     height: 100%;
     background-color: #eee;
-    border-radius: 20px;
-    box-shadow: 0 3px 15px rgba(100, 100, 100, 0.5);
+    border-radius: calc(var(--main-size-k) * 4vh);
+    box-shadow: 0 calc(var(--main-size-k) * 3vh) calc(var(--main-size-k) * 15vh) rgba(100, 100, 100, 0.5);
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -177,69 +183,70 @@
 .pokemon .imgContainer {
     background-color: rgba(255, 255, 255, 0.6);
     border-radius: 50%;
-    width: 140px;
-    height: 140px;
+    width: calc(var(--main-size-k) * 30vh);
+    height: calc(var(--main-size-k) * 30vh);
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: calc(var(--main-size-k) * 1vh);
 }
 
 .pokemon .imgContainer img {
-    margin-top: 20px;
-    max-width: 90%;
+    margin-top: calc(var(--main-size-k) * 1vh);
+    max-width: calc(var(--main-size-k) * 30vh);
 }
 
 .pokemon .info {
-    margin-top: 20px;
+    margin-top: calc(var(--main-size-k) * 6vh);
 }
 
 .pokemon .number {
     background-color: rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    font-size: 0.8em;
-    padding: 5px 10px;
+    border-radius: calc(var(--main-size-k) * 4vh);
+    font-size: calc(var(--main-size-k) * 3vh);
+    padding: calc(var(--main-size-k) * 1vh) calc(var(--main-size-k) * 2vh);
 }
 
 .pokemon .name {
-    margin: 15px 0 7px;
-    letter-spacing: 1px;
+    font-size: calc(var(--main-size-k) * 8vh);
+    margin: calc(var(--main-size-k) * 3vh) 0 calc(var(--main-size-k) * 1vh);
+    letter-spacing: 0;
 }
 
 .values {
     position: absolute;
     display: block;
-    top: 20px;
-    left: 20px;
-    font-size: 26px;
-    line-height: 26px;
-    width: 78px;
-    height: 78px;
+    top: calc(var(--main-size-k) * 6vh);
+    left: calc(var(--main-size-k) * 6vh);
+    font-size: calc(var(--main-size-k) * 6vh);
+    line-height: calc(var(--main-size-k) * 5vh);
+    width: calc(var(--main-size-k) * 12vh);
+    height: calc(var(--main-size-k) * 12vh);
 }
 
 .count{
     position: absolute;
-    width: 30px;
-    height: 26px;
+    width: calc(var(--main-size-k) * 0vh);
+    height: calc(var(--main-size-k) * 0vh);
     text-align: center;
 }
 
 .count.top {
-    left: 50%;
+    left: calc(var(--main-size-k) * 6vh);
     transform: translate(-50%, 0);
     top: 0;
 }
 
 .count.left {
-    top: 26px;
+    top: calc(var(--main-size-k) * 6vh);
     left: 0;
 }
 
 .count.right {
-    top: 26px;
+    top: calc(var(--main-size-k) * 6vh);
     right: 0;
 }
 
 .count.bottom {
-    left: 50%;
+    left: calc(var(--main-size-k) * 6vh);
     transform: translate(-50%, 0);
     bottom: 0;
 }

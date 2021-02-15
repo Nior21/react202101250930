@@ -67,7 +67,7 @@ const StartPage = () => {
                 isActive={ true }
                 isSelected={ selected }                            // Передаем в созданную карточку параметр выбранности
                 onChangeActive={ () => {
-                    if (Object.keys ( pokemonsContext.pokemons ).length < 5 || selected) {
+                    if (Object.keys ( pokemonsContext.deck1 ).length < 5 || selected) {
                         handleChangeSelected ( key )
                     }
                 } }
@@ -81,7 +81,7 @@ const StartPage = () => {
                     variant="dark"
                     block
                     onClick={handleStartGameClick}
-                    disabled={Object.keys(pokemonsContext.pokemons).length < 5}
+                    disabled={Object.keys(pokemonsContext.deck1).length < 5}
                 >
                     Start Game
                 </Button>
